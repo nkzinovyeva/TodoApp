@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge; text/html">
+	<title>Todo management</title>
+	<style type="text/css">
+   		#todocontainer{
+         margin-top: 50px;
+       }
+   	</style>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+      <nav class="navbar navbar-default">
+	      <div class="container">
+	        <div id="navbar" class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li><a href="#">TODOS for [[${#httpServletRequest.remoteUser}]]</a></li>
+	          </ul>
+	          <ul class="nav navbar-nav navbar-right">
+	             <li><a class="btn btn-sm btn-warning" th:href="@{/logout}">Logout</a></li>
+	          </ul>
+	        </div>
+	      </div>
+    	</nav>    
+		<section id="todocontainer">
+	        <div class="row">
+		          <div class="col-md-2"></div>
+		          <div class="col-md-12">
+		              <div class="d-flex justify-content-center">
+							<a class="btn btn-primary" href="/add">Add Task</a>
+		              </div>
+			              <table class="table table-striped">
+			              	<thead>
+			                    <tr>
+			                      <th>My task</th>
+			                      <th>Target date</th>
+			                      <th>Priority</th>
+			                      <th>Creator</th>
+			                      <th></th>
+			                      <th></th>
+			                    </tr>
+			                 </thead>
+			                 <tbody>
+								<tr th:each= "task : ${tasks}">
+									<td  th:text="${task.title}"></td>
+									<td  th:text="${#dates.format(task.targetDate, 'dd.MM.yyyy')}"></td>
+									<td  th:text="${task.priority.name}"></td>
+									<td  th:text="${task.creator}"></td>
+									<td>
+										<form th:action="@{/edit/{id}(id=${task.id})}" method="POST" enctype="multipart/form-data"> 
+				                          <div class="form-group">
+				                            <button type="submit" class="btn btn-success btn-sm text-white">Update</button>
+				                          </div>
+		                         		</form>
+		                      		</td>
+									<td sec:authorize="hasAuthority('ADMIN')">
+				                        <form th:action="@{/delete/{id}(id=${task.id})}" method="POST" enctype="multipart/form-data"> 
+				                          <div class="form-group">
+				                            <button type="submit" class="btn btn-danger btn-sm text-white">Delete</button>
+				                          </div>
+				                         </form>
+				                    </td>
+								</tr>
+			                  </tbody>
+			                </table>
+			      </div>
+		          <div class="col-md-2"></div>
+	        </div>
+	    </section>
+    </div>     
+</body>
+</html>

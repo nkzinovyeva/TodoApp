@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add to Tasklist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	
+</head>
+
+<body>
+	<div class="col-sm-4">
+    	<div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Add a new task</h3>
+            </div>
+            <div class="panel-body">
+	              <form th:object="${task}" th:action="@{save}" action="#" method="post">
+					  	<label for="title">My task</label>
+						<input type="text"  size=41px id="title" th:field="*{title}" autofocus/>
+						<div style="clear: both; display: block; height: 10px;" ></div>
+						
+					  	<label for="targetDate">Target date</label>
+						<input type="date" id="targetDate" th:field="*{targetDate}" required />
+						<div style="clear: both; display: block; height: 10px;"></div>			
+						
+						<label for="prioritylist">Priority</label> 
+						<select id="prioritylist" th:field="*{priority}" class="form-control">
+							<option th:each="priority: ${priorities}"
+								th:value="${priority.priorityId}" 
+								th:text="${priority.name}"></option>
+						</select>
+						<div style="clear: both; display: block; height: 10px;"></div>
+						
+						<label  for="creator">User</label>
+						<input type="hidden" th:field="*{creator}" />
+						<div style="clear: both; display: block; height: 10px;"></div>
+						
+						<input class="btn btn-success"type="submit" value="Save"></input>	
+					</form>
+            </div>
+        </div>
+    </div>   
+             
+</body>
+</html>
