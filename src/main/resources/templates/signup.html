@@ -4,30 +4,39 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<style>
+			body {
+				margin: 20px;
+			}
+			form {
+				max-width: 800px;
+				margin: auto;
+				min-height: 400px;
+			}
+	</style>
 </head>
 <body>
-<div class="container">
-	<h1>Sign-up</h1>
-     <div class="col-md-4">
-		<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
-			<div>
-				<label> Username :<input type="text" th:field="*{username}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>	
-			</div>
-			<div>
-				<label> Password :<input type="password" th:field="*{password}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>	
-			</div>
-			<div>
-				<label> Re-type Password: <input type="password" th:field="*{passwordCheck}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>	
-			</div>
-			
-			<input type="submit" class="btn btn-primary"  value="Signup"></input>
-			<button class="btn btn-secondary"> Already a user?</button>
-		</form>
-		
+	<div class="container">
+	     <div class="col-md-4 col-md-offset-4">
+	     	<h2>Sign-up</h2>
+			<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
+				<div>
+					<label> Username:<input type="text" th:field="*{username}" class="form-control"/></label>
+					<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>	
+				</div>
+				<div>
+					<label> Password:<input type="password" th:field="*{password}" class="form-control"/></label>
+					<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>	
+				</div>
+				<div>
+					<label> Repeat password: <input type="password" th:field="*{passwordCheck}" class="form-control"/></label>
+					<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>	
+				</div>
+				
+				<input type="submit" class="btn btn-primary" value="Signup"></input>
+				<a class="btn btn-secondary" href="/login">Already a user?</a>		
+			</form>
+		</div>
 	</div>
-</div>
 </body>
 </html>

@@ -38,12 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
       .formLogin()
           .defaultSuccessUrl("/tasklist", true)
-          //.loginPage("/login")
+          .loginPage("/login")
           .permitAll()
           .and()
       .logout()
           .permitAll()
           .invalidateHttpSession(true);
     }
-	
 }
