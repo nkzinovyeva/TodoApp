@@ -47,11 +47,6 @@ public class TaskController {
 	@Autowired
 	private UserRepository urepository;
 	
-	@RequestMapping(value="/login")
-    public String login() {	
-        return "login";
-    }
-	
 	//Sign up handler
 	@RequestMapping(value = "signup")
     public String addUser(Model model){
@@ -61,12 +56,10 @@ public class TaskController {
     
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
-    	System.out.println("SAVESAVE");
     	if (!bindingResult.hasErrors()) { // validation errors
-    		System.out.println(bindingResult);
-    		System.out.println("ERRORS");
+    		
     		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match		
-        		System.out.println("NOTERRORS");			
+        					
     			String pwd = signupForm.getPassword();
 		    	BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 		    	String hashPwd = bc.encode(pwd);
@@ -76,10 +69,10 @@ public class TaskController {
 		    	newUser.setUsername(signupForm.getUsername());
 		    	newUser.setRole("ADMIN");
 		    	newUser.setEmail("test@email.com");
-		    	System.out.println("user " + newUser);
+		    	
 		    	if (urepository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
 		    		urepository.save(newUser);
-					System.out.println("fetch all USERS");
+					
 					for (User login : urepository.findAll()) {
 						System.out.println(login.toString());
 					}
@@ -100,6 +93,13 @@ public class TaskController {
     	return "redirect:/login";    	
     }   
 	
+    
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
+    
+    
 	//Date handler
 	@InitBinder
     public void initBinder(WebDataBinder binder) {

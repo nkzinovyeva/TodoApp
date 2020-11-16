@@ -23,16 +23,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
     private UserDetailServiceImpl userDetailsService;
 	
+	@Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    }
+	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests().antMatchers("/css/**", "/signup").permitAll() // Enable css when logged out
+        .authorizeRequests().antMatchers("/saveuser", "/css/**", "/signup").permitAll() // Enable css when logged out
         .and()
         .authorizeRequests()
         .anyRequest().authenticated()
         .and()
       .formLogin()
-          .defaultSuccessUrl("/tasklist")
+          .defaultSuccessUrl("/tasklist", true)
           //.loginPage("/login")
           .permitAll()
           .and()
@@ -41,8 +46,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .invalidateHttpSession(true);
     }
 	
-	@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
 }
