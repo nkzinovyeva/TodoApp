@@ -21,9 +21,8 @@ public class SignupForm {
     @Size(min=7, max=30)
     private String email = "test@email.com";
     
-    
     @NotEmpty
-    private String role = "USER";
+    private String role = "ADMIN";
 
 	public String getUsername() {
 		return username;

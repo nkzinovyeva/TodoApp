@@ -131,6 +131,12 @@ public class TaskController {
     	return (List<Task>) trepository.findAll();
     }
     
+ // RESTful service to get all users (for Rest API)
+    @RequestMapping(value="/users")
+    public @ResponseBody List<User> userListRest() {	
+    	return (List<User>) urepository.findAll();
+    }
+    
 	//List todos
 	@RequestMapping(value={"/","/tasklist"})
 	public String tasklist (Model model) {

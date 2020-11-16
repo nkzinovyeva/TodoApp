@@ -29,8 +29,8 @@ public class TodoApplication {
 			prepository.save(new Priority("Normal"));
 			
 			//User user1 = new User("user", "$2a$10$8G69obUTwd90WeMgcwMbTuii8z68BDUzFmpli55Pe5xj8J1yIJO8K", "user@bookstore.fi", "USER", "123");
-			User user2 = new User("admin", "$2a$10$BAvZvAW6Xw8thG7ZZYwYPOTy.l8cbfyfI.gBUAB0pXzpanaQxVgSu", "admin@bookstore.fi", "ADMIN" , "123");
-			User user3 = new User("test", "$2a$10$8G69obUTwd90WeMgcwMbTuii8z68BDUzFmpli55Pe5xj8J1yIJO8K", "user@bookstore.fi", "ADMIN", "123");
+			User user2 = new User("admin", "$2a$10$BAvZvAW6Xw8thG7ZZYwYPOTy.l8cbfyfI.gBUAB0pXzpanaQxVgSu", "admin@bookstore.fi", "ADMIN");
+			User user3 = new User("test", "$2a$10$8G69obUTwd90WeMgcwMbTuii8z68BDUzFmpli55Pe5xj8J1yIJO8K", "user@bookstore.fi", "ADMIN");
 			//urepository.save(user1);
 			urepository.save(user2);
 			urepository.save(user3);

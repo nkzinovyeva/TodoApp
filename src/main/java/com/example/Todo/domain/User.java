@@ -29,19 +29,19 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
     
-    @Column(name = "familyID", nullable = false)
-    private String familyID;
+    //@Column(name = "familyID", nullable = false)
+    //private String familyID;
     
     public User() {
     }
 
-	public User(String username, String passwordHash, String email, String role, String familyID) {
+	public User(String username, String passwordHash, String email, String role) {
 		super();
 		this.username = username;
 		this.passwordHash = passwordHash;
 		this.email = email;
 		this.role = role;
-		this.familyID = familyID;
+		//this.familyID = familyID;
 	}
 
 	public Long getId() {
@@ -84,12 +84,12 @@ public class User {
 		this.role = role;
 	}
 
-	public String getFamilyID() {
+	/*public String getFamilyID() {
 		return familyID;
 	}
 
 	public void setFamilyID(String familyID) {
 		this.familyID = familyID;
-	}
+	}*/
 	
 }
