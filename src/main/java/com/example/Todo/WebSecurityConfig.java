@@ -21,18 +21,19 @@ import com.example.Todo.web.UserDetailServiceImpl;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-    private UserDetailServiceImpl userDetailsService;	
+    private UserDetailServiceImpl userDetailsService;
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests().antMatchers("/css/**").permitAll() // Enable css when logged out
+        .authorizeRequests().antMatchers("/css/**", "/signup").permitAll() // Enable css when logged out
         .and()
         .authorizeRequests()
         .anyRequest().authenticated()
         .and()
       .formLogin()
           .defaultSuccessUrl("/tasklist")
+          .loginPage("/login")
           .permitAll()
           .and()
       .logout()
