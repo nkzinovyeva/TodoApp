@@ -3,9 +3,9 @@ package com.example.Todo.domain;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-
 public class SignupForm {
-    @NotEmpty
+    
+	@NotEmpty
     @Size(min=5, max=30)
     private String username = "";
 
@@ -19,10 +19,11 @@ public class SignupForm {
 
     @NotEmpty
     @Size(min=7, max=30)
-    private String email = "test@email.com";
+    private String email = "";
     
     @NotEmpty
     private String role = "ADMIN";
+    
 
 	public String getUsername() {
 		return username;
@@ -63,6 +64,4 @@ public class SignupForm {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
-    
 }

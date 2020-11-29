@@ -1,14 +1,7 @@
 package com.example.Todo.domain;
 
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
+import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -52,7 +45,4 @@ public class Priority {
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
-	
-	
-
 }

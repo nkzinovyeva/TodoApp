@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title></title>
+    <title>Sign-up form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<style>
@@ -16,13 +16,16 @@
 	</style>
 </head>
 <body>
-	<div class="container">
-	     <div class="col-md-4 col-md-offset-4">
+	<div class="col-md-4 col-md-offset-4">
 	     	<h2>Sign-up</h2>
 			<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
 				<div>
 					<label> Username:<input type="text" th:field="*{username}" class="form-control"/></label>
 					<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>	
+				</div>
+				<div>
+					<label> E-mail:<input type="text" th:field="*{email}" class="form-control"/></label>
+					<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>	
 				</div>
 				<div>
 					<label> Password:<input type="password" th:field="*{password}" class="form-control"/></label>
@@ -34,9 +37,9 @@
 				</div>
 				
 				<input type="submit" class="btn btn-primary" value="Signup"></input>
-				<a class="btn btn-secondary" href="/login">Already a user?</a>		
+				<a class="btn btn-secondary" href="/login">Already a user?</a>
+			
 			</form>
 		</div>
-	</div>
 </body>
 </html>

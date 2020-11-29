@@ -1,11 +1,6 @@
 package com.example.Todo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name = "usertable")
 @Entity
@@ -23,7 +18,7 @@ public class User {
     @Column(name = "password", nullable = false)
     private String passwordHash;
     
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "role", nullable = false)
@@ -91,5 +86,4 @@ public class User {
 	public void setFamilyID(String familyID) {
 		this.familyID = familyID;
 	}*/
-	
 }
