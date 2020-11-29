@@ -93,7 +93,7 @@ public class UserController {
 		    	Secret newSecret = createSecretForUser(user, randomStr);
 		    	
 		    	Email letter = new Email();
-		    	letter.sendEmail(user.getEmail(), "Reset key", "Please copy this address and insert it to the main url of the programm : /updatepassword?secret=" + newSecret.getSecret() );
+		    	letter.sendEmail(user.getEmail(), "Reset key", "Follow the link: https://todo-app-nz.herokuapp.com//updatepassword?secret=" + newSecret.getSecret() );
 		    	
 		    	return "forgotpassword";
 		    	
