@@ -33,7 +33,7 @@ public class Email {
 		
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-		message.setFrom(new InternetAddress("noreplyfakeacc@gmail.com"));
+		message.setFrom(new InternetAddress("NoReplyFakeAcc@gmail.com"));
 		
 		helper.setFrom("noreply@todo.com");
 	    helper.setTo(to);
