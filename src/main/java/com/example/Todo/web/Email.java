@@ -5,17 +5,11 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 
 public class Email {
-	
-	//@Value("#{environment.SPRING_DATASOURCE_ADDRESS}")
-	//private String address;
-	//@Value("#{environment.SPRING_DATASOURCE_PASS}")
-	//private String pass;
 	
 	public void sendEmail(String to, String subject, String text) {
 		
