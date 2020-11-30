@@ -15,7 +15,7 @@ public class Email {
 	@Value("#{environment.SPRING_DATASOURCE_ADDRESS}")
 	private String address;
 	@Value("#{environment.SPRING_DATASOURCE_PASS}")
-	private String pass;
+	private String password;
 	
 	
 	public void sendEmail(String to, String subject, String text) {
@@ -26,7 +26,7 @@ public class Email {
 	    mailSender.setPort(587);
 	    
 	    mailSender.setUsername(address);
-	    mailSender.setPassword(pass);
+	    mailSender.setPassword(password);
 	    
 	    Properties props = mailSender.getJavaMailProperties();
 	    props.put("mail.transport.protocol", "smtp");
