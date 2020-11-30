@@ -1,5 +1,6 @@
 package com.example.Todo.web;
 
+import java.util.List;
 import java.util.Random;
 import javax.validation.Valid;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.Todo.domain.Secret;
 import com.example.Todo.domain.SecretRepository;
@@ -21,19 +23,34 @@ import com.example.Todo.domain.UserRepository;
 
 @Controller
 public class UserController {
+	
 	@Autowired
 	private UserRepository urepository;
 	
 	@Autowired
 	private SecretRepository srepository;
 	
+	/*
+	 * REST Service
+	 */
+    
+    // RESTful service to get all users (for Rest API)
+    @RequestMapping(value="/users")
+    public @ResponseBody List<User> userListRest() {	
+    	return (List<User>) urepository.findAll();
+    }
+	
+    /*
+   	 * MVC
+   	 */
+    
 	//Sign up handler
 	@RequestMapping(value = "/signup")
     public String addUser(Model model){
     	model.addAttribute("signupform", new SignupForm());
         return "signup";
     }
-		
+	
 	//Save user handler
     @RequestMapping(value = "/saveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
@@ -73,14 +90,14 @@ public class UserController {
     	return "redirect:/login";    	
     } 
     
-  //forgot handler
+    //Forgot handler
     @RequestMapping(value = "forgotpassword")
     public String forgotPassword(Model model){
     	model.addAttribute("signupform", new SignupForm());
 		return "forgotpassword";
     }	
 
-    //send forgotten password handler
+    //Send forgotten password handler
     @RequestMapping(value = "sendforgot", method = RequestMethod.POST)
     public String sendforgot(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
     	
@@ -125,7 +142,8 @@ public class UserController {
     			bindingResult.rejectValue("passwordCheck", "err.passCheck", "Passwords does not match"); 
 				return "updatepassword";
     		}
-} 
+    }
+    
     //Update user's password page
     @RequestMapping(value="/updatepassword")
   	public String updatepassword(@RequestParam("secret") String secret, Model model) {

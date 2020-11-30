@@ -2,6 +2,10 @@ package com.example.Todo.domain;
 
 import javax.persistence.*;
 
+/*
+ * Secret code entity for the project
+ */
+
 @Entity
 public class Secret {
 	

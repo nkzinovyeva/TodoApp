@@ -5,19 +5,28 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 
 public class Email {
+	
+	@Value("#{environment.SPRING_DATASOURCE_ADDRESS}")
+	private String address;
+	@Value("#{environment.SPRING_DATASOURCE_PASS}")
+	private String pass;
+	
+	
 	public void sendEmail(String to, String subject, String text) {
+		
 		
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 	    mailSender.setHost("smtp.gmail.com");
 	    mailSender.setPort(587);
 	    
-	    mailSender.setUsername("noreplyfakeacc@gmail.com");
-	    mailSender.setPassword("qpgrwtslnoazhvem");
+	    mailSender.setUsername(address);
+	    mailSender.setPassword(pass);
 	    
 	    Properties props = mailSender.getJavaMailProperties();
 	    props.put("mail.transport.protocol", "smtp");
@@ -33,7 +42,7 @@ public class Email {
 		
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-		message.setFrom(new InternetAddress("NoReplyFakeAcc@gmail.com"));
+		message.setFrom(new InternetAddress(address));
 		
 		helper.setFrom("noreply@todo.com");
 	    helper.setTo(to);

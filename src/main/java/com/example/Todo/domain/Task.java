@@ -4,6 +4,10 @@ import java.util.Date;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+/*
+ * Task entity for the project
+ */
+
 @Entity
 //@Table(name="task")
 public class Task {

@@ -2,6 +2,10 @@ package com.example.Todo.domain;
 
 import javax.persistence.*;
 
+/*
+ * User entity for the project
+ */
+
 @Table(name = "usertable")
 @Entity
 public class User {

@@ -3,6 +3,10 @@ package com.example.Todo.domain;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+/*
+ * Sign-up form for the project
+ */
+
 public class SignupForm {
     
 	@NotEmpty

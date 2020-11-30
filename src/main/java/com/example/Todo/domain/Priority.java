@@ -4,6 +4,10 @@ import java.util.List;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+/*
+ * Priority entity for the project
+ */
+
 @Entity
 public class Priority {
 	@Id
